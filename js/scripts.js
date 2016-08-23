@@ -1,5 +1,6 @@
 //business logic
-function Address(street, city, state) {
+function Address(addressType, street, city, state) {
+  this.addressType = addressType;
   this.street = street;
   this.city = city;
   this.state = state;
@@ -15,7 +16,17 @@ Contact.prototype.fullName = function() {
 // user interface logic
 $(document).ready(function() {
   $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
+    $("#new-addresses").append(
+                               '<div class="new-address">' +
+                                 '<div class="form-group">'+
+                                   '<label for="new-address-type">Address Type:</label>'+
+                                   '<select class="form-control type">'+
+                                     '<option></option>'+
+                                     '<option>Home</option>'+
+                                     '<option>Work</option>'+
+                                     '<option>Mailing</option>'+
+                                   '</select>'+
+                                 '</div>'+
                                  '<div class="form-group">' +
                                    '<label for="new-street">Street</label>' +
                                    '<input type="text" class="form-control new-street">' +
@@ -42,10 +53,12 @@ $(document).ready(function() {
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
     $(".new-address").each(function() {
+      var inputtedType = $(this).find(".type option:selected").val();
+      console.log(inputtedType);
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+      var newAddress = new Address(inputtedType, inputtedStreet, inputtedCity, inputtedState);
       newContact.addresses.push(newAddress);
     });
 
@@ -58,7 +71,7 @@ $(document).ready(function() {
       $(".last-name").text(newContact.lastName);
       $("ul#addresses").text("");
       newContact.addresses.forEach(function(address) {
-        $("ul#addresses").append("<li>" + address.street + ", " + address.city + " " + address.state + "</li>");
+        $("ul#addresses").append("<li>" + address.addressType + " " + address.street + ", " + address.city + " " + address.state + "</li>");
       });
     });
 
