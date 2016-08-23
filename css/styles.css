@@ -41,3 +41,7 @@ body {
   font-size: 45px;
   font-family: 'Kumar One Outline', cursive;
 }
+
+#show-contact li {
+  font-size: 40px;
+}
