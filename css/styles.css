@@ -33,6 +33,13 @@ body {
   font-size: 25px;
 }
 
+#addresses {
+  text-align: center;
+  font-family: 'Audiowide', cursive;
+  font-size: 25px;
+  list-style: none;
+}
+
 .container h2 {
   font-family: 'Freckle Face', cursive;
 }
@@ -42,6 +49,8 @@ body {
   font-family: 'Kumar One Outline', cursive;
 }
 
-#show-contact li {
+#header {
+  text-align: center;
+  font-family: 'Audiowide', cursive;
   font-size: 40px;
 }
